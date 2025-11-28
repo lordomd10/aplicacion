@@ -2,9 +2,21 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
 import random
-from fpdf2 import FPDF
 import io
 import base64
+
+# ← ¡YA NO NECESITAS NINGUNA LÍNEA DE FPDF AQUÍ!
+# ← reportlab se importa DENTRO de la función generar_certificado_pdf
+#    (así Streamlit Cloud no se queja al inicio)
+
+# ============================================
+# CONFIGURACIÓN INICIAL
+# ============================================
+st.set_page_config(
+    page_title="Sistema Escolar Interactivo",
+    page_icon="🏫",
+    layout="wide"
+)
 
 # ============================================
 # CONFIGURACIÓN INICIAL
