@@ -460,82 +460,106 @@ def procesar_pregunta(pregunta):
 def mostrar_aviso_privacidad():
     st.markdown("""
     <style>
-    .privacy-box {
-        background-color: #f0f2f6;
-        padding: 20px;
-        border-radius: 10px;
-        border-left: 5px solid #1f77b4;
+    .privacy-container {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        margin: 20px 0;
+        color: white !important;
+    }
+    .privacy-title {
+        color: #ffffff !important;
+        text-align: center;
+        font-size: 2.2em;
+        margin-bottom: 20px;
+    }
+    .privacy-text {
+        color: #e0e0e0 !important;
+        font-size: 1.1em;
+        line-height: 1.6;
+    }
+    .privacy-text h3, .privacy-text h4 {
+        color: #ffffff !important;
+    }
+    .privacy-text strong {
+        color: #a8d5ff !important;
     }
     </style>
     """, unsafe_allow_html=True)
-    
-    st.title("🔒 Aviso de Privacidad y Protección de Datos")
-    
+
+    st.markdown('<h1 class="privacy-title">🔒 Aviso de Privacidad y Protección de Datos</h1>', unsafe_allow_html=True)
+
     st.markdown("""
-    <div class="privacy-box">
-    
-    ### POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS PERSONALES
-    
-    **Fecha de última actualización:** Enero 2024
-    
-    #### 1. RESPONSABLE DEL TRATAMIENTO
-    El responsable del tratamiento de sus datos personales es la institución educativa seleccionada.
-    
-    #### 2. DATOS QUE RECOPILAMOS
-    - Nombre completo
-    - Número de identificación (cédula)
-    - Información académica (notas, asignaturas)
-    - Historial de consultas en el sistema
-    
-    #### 3. FINALIDAD DEL TRATAMIENTO
-    Sus datos serán utilizados para:
-    - Gestión académica y administrativa
-    - Generación de certificados de estudio
-    - Seguimiento del rendimiento académico
-    - Comunicación de información institucional
-    
-    #### 4. DERECHOS DEL TITULAR
-    Usted tiene derecho a:
-    - Conocer, actualizar y rectificar sus datos
-    - Solicitar prueba de la autorización
-    - Ser informado sobre el uso de sus datos
-    - Revocar la autorización
-    - Acceder gratuitamente a sus datos
-    
-    #### 5. MEDIDAS DE SEGURIDAD
-    Implementamos medidas técnicas y organizativas para proteger sus datos contra:
-    - Acceso no autorizado
-    - Pérdida o destrucción
-    - Uso indebido
-    
-    #### 6. TRANSFERENCIA DE DATOS
-    Sus datos NO serán compartidos con terceros sin su consentimiento expreso, 
-    excepto cuando sea requerido por ley.
-    
-    #### 7. CONSERVACIÓN DE DATOS
-    Los datos se conservarán mientras mantenga vínculo con la institución 
-    y por el tiempo adicional requerido por normativas educativas.
-    
-    #### 8. CONTACTO
-    Para ejercer sus derechos o consultas sobre esta política:
-    - Email: protecciondatos@colegio.edu.co
-    - Teléfono: (601) 555-0123
-    
-    ---
-    
-    **Base legal:** Ley 1581 de 2012 (Colombia) - Protección de Datos Personales
-    
+    <div class="privacy-container">
+        <div class="privacy-text">
+
+        <h3>POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS PERSONALES</h3>
+        <p><strong>Fecha de última actualización:</strong> Enero 2024</p>
+
+        <h4>1. RESPONSABLE DEL TRATAMIENTO</h4>
+        <p>El responsable del tratamiento de sus datos personales es la institución educativa seleccionada.</p>
+
+        <h4>2. DATOS QUE RECOPILAMOS</h4>
+        <ul>
+            <li>Nombre completo</li>
+            <li>Número de identificación (cédula)</li>
+            <li>Información académica (notas, asignaturas)</li>
+            <li>Historial de consultas en el sistema</li>
+        </ul>
+
+        <h4>3. FINALIDAD DEL TRATAMIENTO</h4>
+        <p>Sus datos serán utilizados para:</p>
+        <ul>
+            <li>Gestión académica y administrativa</li>
+            <li>Generación de certificados de estudio</li>
+            <li>Seguimiento del rendimiento académico</li>
+            <li>Comunicación de información institucional</li>
+        </ul>
+
+        <h4>4. DERECHOS DEL TITULAR</h4>
+        <p>Usted tiene derecho a:</p>
+        <ul>
+            <li>Conocer, actualizar y rectificar sus datos</li>
+            <li>Solicitar prueba de la autorización</li>
+            <li>Ser informado sobre el uso de sus datos</li>
+            <li>Revocar la autorización</li>
+            <li>Acceder gratuitamente a sus datos</li>
+        </ul>
+
+        <h4>5. MEDIDAS DE SEGURIDAD</h4>
+        <p>Implementamos medidas técnicas y organizativas para proteger sus datos contra acceso no autorizado, pérdida, destrucción o uso indebido.</p>
+
+        <h4>6. TRANSFERENCIA DE DATOS</h4>
+        <p>Sus datos <strong>NO serán compartidos</strong> con terceros sin su consentimiento expreso, excepto cuando sea requerido por ley.</p>
+
+        <h4>7. CONSERVACIÓN DE DATOS</h4>
+        <p>Los datos se conservarán mientras mantenga vínculo con la institución y por el tiempo adicional requerido por normativas educativas.</p>
+
+        <h4>8. CONTACTO</h4>
+        <p>Para ejercer sus derechos o consultas:</p>
+        <ul>
+            <li>Email: <strong>protecciondatos@colegio.edu.co</strong></li>
+            <li>Teléfono: <strong>(601) 555-0123</strong></li>
+        </ul>
+
+        <hr style="border-color: #555;">
+        <p style="text-align: center; font-size: 0.9em;">
+            <strong>Base legal:</strong> Ley 1581 de 2012 (Colombia) - Protección de Datos Personales
+        </p>
+
+        </div>
     </div>
     """, unsafe_allow_html=True)
-    
-    st.markdown("---")
+
+    st.markdown("<br>", unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        acepto = st.checkbox("✅ He leído y acepto la política de privacidad y tratamiento de datos personales")
+        acepto = st.checkbox("✅ **He leído y acepto la política de privacidad y tratamiento de datos personales**", value=False)
         
         if acepto:
-            if st.button("Continuar al Sistema", type="primary", use_container_width=True):
+            if st.button("🚀 Continuar al Sistema", type="primary", use_container_width=True):
                 st.session_state.privacy_accepted = True
                 st.rerun()
 
