@@ -319,63 +319,59 @@ if 'privacy_accepted' not in st.session_state:
 # ============================================
 
 def generar_certificado_pdf(nombre, cedula, colegio, promedio):
-    """Genera un certificado de estudios en PDF"""
-    pdf = FPDF()
-    pdf.add_page()
+    from reportlab.lib.pagesizes import letter
+    from reportlab.pdfgen import canvas
+    from io import BytesIO
+
+    buffer = BytesIO()
+    p = canvas.Canvas(buffer, pagesize=letter)
+    width, height = letter
+
+    # Título
+    p.setFont("Helvetica-Bold", 24)
+    p.drawCentredString(width/2, height - 100, "CERTIFICADO DE ESTUDIOS")
+
+    # Colegio
+    p.setFont("Helvetica-Bold", 18)
+    p.drawCentredString(width/2, height - 140, colegio.upper())
+
+    # Línea
+    p.setStrokeColorRGB(0, 0.3, 0.6)
+    p.line(100, height - 160, width-100, height - 160)
+
+    # Cuerpo
+    p.setFont("Helvetica", 14)
+    texto = [
+        "",
+        "El rector(a) de la institución,",
+        "",
+        "CERTIFICA QUE:",
+        "",
+        f"El(la) estudiante {nombre},",
+        f"identificado(a) con cédula N° {cedula},",
+        "se encuentra matriculado(a) y cursando estudios",
+        "en esta institución durante el año lectivo 2024.",
+        "",
+        f"Promedio académico actual: {promedio:.2f}",
+        "",
+        f"Bogotá D.C., {datetime.now().strftime('%d de %B de %Y')}"
+    ]
     
-    # Encabezado
-    pdf.set_font('Arial', 'B', 20)
-    pdf.cell(0, 20, 'CERTIFICADO DE ESTUDIOS', 0, 1, 'C')
-    pdf.ln(10)
-    
-    # Nombre del colegio
-    pdf.set_font('Arial', 'B', 16)
-    pdf.cell(0, 10, colegio.upper(), 0, 1, 'C')
-    pdf.ln(10)
-    
-    # Línea decorativa
-    pdf.set_draw_color(0, 0, 128)
-    pdf.line(30, pdf.get_y(), 180, pdf.get_y())
-    pdf.ln(15)
-    
-    # Cuerpo del certificado
-    pdf.set_font('Arial', '', 12)
-    
-    texto = f"""
-    El/La rector(a) del {colegio}, 
-    
-    CERTIFICA QUE:
-    
-    El/La estudiante {nombre}, identificado(a) con documento 
-    de identidad No. {cedula}, se encuentra matriculado(a) 
-    y cursando estudios en esta institución educativa durante 
-    el año lectivo 2024.
-    
-    El estudiante presenta un promedio académico de: {promedio:.2f}
-    
-    Este certificado se expide a solicitud del interesado(a) 
-    en la ciudad de Bogotá, a los {datetime.now().day} días 
-    del mes de {datetime.now().strftime('%B')} de {datetime.now().year}.
-    """
-    
-    pdf.multi_cell(0, 8, texto)
-    pdf.ln(20)
-    
+    y = height - 220
+    for linea in texto:
+        p.drawCentredString(width/2, y, linea)
+        y -= 22
+
     # Firma
-    pdf.line(60, pdf.get_y(), 150, pdf.get_y())
-    pdf.ln(5)
-    pdf.set_font('Arial', 'B', 11)
-    pdf.cell(0, 10, 'RECTOR(A)', 0, 1, 'C')
-    pdf.set_font('Arial', '', 10)
-    pdf.cell(0, 5, colegio, 0, 1, 'C')
-    
-    # Pie de página
-    pdf.ln(20)
-    pdf.set_font('Arial', 'I', 8)
-    pdf.cell(0, 5, f'Documento generado el {datetime.now().strftime("%d/%m/%Y %H:%M")}', 0, 1, 'C')
-    pdf.cell(0, 5, 'Este documento es válido sin firma ni sello para trámites internos', 0, 1, 'C')
-    
-    return pdf.output(dest='S').encode('latin-1')
+    p.line(200, y-30, 400, y-30)
+    p.setFont("Helvetica-Bold", 12)
+    p.drawCentredString(width/2, y-50, "RECTOR(A)")
+    p.drawCentredString(width/2, y-70, colegio)
+
+    p.showPage()
+    p.save()
+    buffer.seek(0)
+    return buffer.read()
 
 def procesar_pregunta(pregunta):
     """Procesa la pregunta del chatbot y retorna la respuesta apropiada"""
