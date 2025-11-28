@@ -1,4 +1,6 @@
 streamlit
 pandas
 plotly
-reportlab
+fpdf2
+pyarrow
+openpyxl
