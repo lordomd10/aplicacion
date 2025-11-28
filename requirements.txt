@@ -1,6 +1,6 @@
-streamlit==1.38.0
+streamlit
 pandas
 plotly
-fpdf2
+reportlab
 pyarrow
 openpyxl
