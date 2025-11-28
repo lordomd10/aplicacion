@@ -462,38 +462,29 @@ def mostrar_aviso_privacidad():
     <style>
     .privacy-container {
         background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        padding: 30px;
+        padding: 40px;
         border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        margin: 20px 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         color: white !important;
     }
-    .privacy-title {
-        color: #ffffff !important;
-        text-align: center;
-        font-size: 2.2em;
-        margin-bottom: 20px;
+    .privacy-container h1, .privacy-container h2, .privacy-container h3, .privacy-container h4 {
+        color: white !important;
     }
-    .privacy-text {
+    .privacy-container strong {
+        color: #a8d5ff !important;
+    }
+    .privacy-container p, .privacy-container li {
         color: #e0e0e0 !important;
         font-size: 1.1em;
-        line-height: 1.6;
-    }
-    .privacy-text h3, .privacy-text h4 {
-        color: #ffffff !important;
-    }
-    .privacy-text strong {
-        color: #a8d5ff !important;
+        line-height: 1.7;
     }
     </style>
     """, unsafe_allow_html=True)
 
-    st.markdown('<h1 class="privacy-title">🔒 Aviso de Privacidad y Protección de Datos</h1>', unsafe_allow_html=True)
-
     st.markdown("""
     <div class="privacy-container">
-        <div class="privacy-text">
-
+        <h1 style="text-align:center; margin-bottom:30px;">Aviso de Privacidad y Protección de Datos</h1>
+        
         <h3>POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS PERSONALES</h3>
         <p><strong>Fecha de última actualización:</strong> Enero 2024</p>
 
@@ -528,38 +519,32 @@ def mostrar_aviso_privacidad():
         </ul>
 
         <h4>5. MEDIDAS DE SEGURIDAD</h4>
-        <p>Implementamos medidas técnicas y organizativas para proteger sus datos contra acceso no autorizado, pérdida, destrucción o uso indebido.</p>
+        <p>Implementamos medidas técnicas y organizativas para proteger sus datos contra acceso no autorizado, pérdida o uso indebido.</p>
 
         <h4>6. TRANSFERENCIA DE DATOS</h4>
-        <p>Sus datos <strong>NO serán compartidos</strong> con terceros sin su consentimiento expreso, excepto cuando sea requerido por ley.</p>
+        <p>Sus datos <strong>NO serán compartidos</strong> con terceros sin su consentimiento, salvo obligación legal.</p>
 
         <h4>7. CONSERVACIÓN DE DATOS</h4>
-        <p>Los datos se conservarán mientras mantenga vínculo con la institución y por el tiempo adicional requerido por normativas educativas.</p>
+        <p>Los datos se conservarán mientras exista vínculo con la institución y el tiempo legalmente requerido.</p>
 
         <h4>8. CONTACTO</h4>
-        <p>Para ejercer sus derechos o consultas:</p>
-        <ul>
-            <li>Email: <strong>protecciondatos@colegio.edu.co</strong></li>
-            <li>Teléfono: <strong>(601) 555-0123</strong></li>
-        </ul>
+        <p>Email: <strong>protecciondatos@colegio.edu.co</strong><br>
+        Teléfono: <strong>(601) 555-0123</strong></p>
 
-        <hr style="border-color: #555;">
-        <p style="text-align: center; font-size: 0.9em;">
-            <strong>Base legal:</strong> Ley 1581 de 2012 (Colombia) - Protección de Datos Personales
+        <hr style="border-color:#555; margin:30px 0;">
+        <p style="text-align:center; color:#a0d8ff;">
+            <strong>Ley 1581 de 2012 • Habeas Data • Colombia</strong>
         </p>
-
-        </div>
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    col1, col2, col3 = st.columns([1, 2, 1])
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns([1,2,1])
     with col2:
-        acepto = st.checkbox("✅ **He leído y acepto la política de privacidad y tratamiento de datos personales**", value=False)
-        
+        acepto = st.checkbox("He leído y acepto la política de privacidad y tratamiento de datos personales", value=False)
         if acepto:
-            if st.button("🚀 Continuar al Sistema", type="primary", use_container_width=True):
+            if st.button("Continuar al Sistema", type="primary", use_container_width=True):
                 st.session_state.privacy_accepted = True
                 st.rerun()
 
